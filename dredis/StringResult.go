@@ -25,7 +25,7 @@ func (r *StringResult) UnwrapOr(defaults string) string {
 	return r.Result
 }
 
-func (r *StringResult) UnwrapOrElse(f func() string) interface{} {
+func (r *StringResult) UnwrapOrElse(f func() string) string {
 	if r.Err != nil {
 		return f()
 	}
