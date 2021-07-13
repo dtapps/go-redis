@@ -39,29 +39,10 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/dtapps/go-redis)](https://github.com/dtapps/go-redis)
 
 [comment]: <> (deps.dev)
-[![deps](https://img.shields.io/badge/deps-go-red)](https://deps.dev/go/github.com%2Fdtapps%2Fgo-redis)
-
-https://img.shields.io/badge/deps-go-red
-
-## 下载使用
-
-- 把.example.config.yaml文件重命名为config.yaml
-- 修改对应的配置，运行即可
+[![deps](https://img.shields.io/badge/deps-go-red.svg)](https://deps.dev/go/github.com%2Fdtapps%2Fgo-redis)
 
 ## 扩展包使用
 
 ```go
-go get -u github.com/dtapps/dtapps/go -redis
-```
-
-```go
-package main
-
-import (
-	"github.com/dtapps/go-redis/dssh"
-)
-
-func main() {
-	dssh.Tunnel("root", "", ":22", ":3306", "localhost:13306")
-}
+go get -u github.com/dtapps/dtapps/go-redis
 ```
