@@ -7,6 +7,11 @@ import (
 )
 
 func TestName(t *testing.T) {
+	// 连接
+	err := InitRedis("redis", 6379, "", 2)
+	if err != nil {
+		panic(err)
+	}
 
 	// 设置
 	NewStringOperation().Set("name", "test", WithExpire(time.Second*20))
