@@ -14,7 +14,7 @@ func TestName(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	simpleJson()
+	jsonSimpleJson()
 }
 
 func set() {
@@ -64,4 +64,18 @@ func simpleJson() {
 	}
 	cacheSimpleJson := newCache.GetCacheSimpleJson("test789")
 	log.Printf("_test【GetCache】cacheSimpleJson：%v\n", cacheSimpleJson.Get("name"))
+}
+
+func jsonSimpleJson() {
+	newCache := dredis.NewSimpleCache(dredis.NewStringOperation(), time.Second*50, dredis.SerializerJson)
+	newCache.JsonGetter = func() interface{} {
+		log.Println("【没有命中】SerializerJson")
+		type a []string
+		b := a{
+			"me", "she", "you",
+		}
+		return b
+	}
+	cacheJson := newCache.GetCacheSimpleJson("test789")
+	log.Printf("_test【JsonGetter GetCacheSimpleJson】jsonSimpleJson：%v\n", cacheJson.GetIndex(1))
 }
