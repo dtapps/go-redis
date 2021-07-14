@@ -1,6 +1,7 @@
 package dredis
 
 import (
+	"github.com/bitly/go-simplejson"
 	"github.com/dtapps/go-redis/dredis"
 	"log"
 	"testing"
@@ -9,27 +10,58 @@ import (
 
 func TestName(t *testing.T) {
 	// 连接
-	err := dredis.InitRedis("redis", 6379, "", 2)
+	err := dredis.InitRedis("127.0.0.1", 6379, "", 2)
 	if err != nil {
 		panic(err)
 	}
+	simpleJson()
+}
 
+func set() {
 	// 设置
-	dredis.NewStringOperation().Set("name", "test", dredis.WithExpire(time.Second*20))
+	dredis.NewStringOperation().Set("test", "test", dredis.WithExpire(time.Second*1))
+}
 
+func mGet() {
 	// 获取
-	iter := dredis.NewStringOperation().MGet("name", "age").Iter()
+	iter := dredis.NewStringOperation().MGet("test1", "test2").Iter()
 	for iter.HasNext() {
-		log.Println(iter.Next())
+		log.Println("MGet：", iter.Next())
 	}
+}
 
-	// 假设缓存15s
-	newCache := dredis.NewSimpleCache(dredis.NewStringOperation(), time.Second*15, dredis.SerializerString)
-	// 缓存的key：news123 news101
-	newCache.DBGetter = func() interface{} {
-		// 数据库获取
+func json() {
+	newCache := dredis.NewSimpleCache(dredis.NewStringOperation(), time.Second*10, dredis.SerializerJson)
+	newCache.JsonGetter = func() interface{} {
+		log.Println("【没有命中】SerializerJson")
+		type a []string
+		b := a{
+			"me", "she", "you",
+		}
+		return b
+	}
+	cacheJSon := newCache.GetCache("test123")
+	log.Printf("【GetCache】cacheJSon：%v\n", cacheJSon)
+}
+
+func dbString() {
+	newCache := dredis.NewSimpleCache(dredis.NewStringOperation(), time.Second*10, dredis.SerializerString)
+	newCache.DBGetter = func() string {
+		log.Println("【没有命中】SerializerString")
 		return "data by id=123"
 	}
-	newCache.GetCache("news123")
+	cacheString := newCache.GetCache("test456")
+	log.Printf("【GetCache】cacheString：%v\n", cacheString)
+}
 
+func simpleJson() {
+	newCache := dredis.NewSimpleCache(dredis.NewStringOperation(), time.Second*50, dredis.SerializerSimpleJson)
+	newCache.SimpleJsonGetter = func() *simplejson.Json {
+		log.Println("_test【没有命中】SerializerSimpleJson")
+		js := simplejson.New()
+		js.Set("name", "test")
+		return js
+	}
+	cacheSimpleJson := newCache.GetCacheSimpleJson("test789")
+	log.Printf("_test【GetCache】cacheSimpleJson：%v\n", cacheSimpleJson.Get("name"))
 }

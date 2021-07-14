@@ -2,8 +2,11 @@ package dredis
 
 import "time"
 
+type empty struct{}
+
 const (
 	AttrExpr = "expr" //过期时间
+	AttrNx   = "nx"   // setNx
 )
 
 type OperationAttr struct {
@@ -24,5 +27,9 @@ func (a OperationAttrs) Find(name string) interface{} {
 
 // WithExpire 过期时间
 func WithExpire(t time.Duration) *OperationAttr {
-	return &OperationAttr{Name: AttrExpr}
+	return &OperationAttr{Name: AttrExpr, Value: t}
+}
+
+func WithNX() *OperationAttr {
+	return &OperationAttr{Name: AttrNx, Value: empty{}}
 }
