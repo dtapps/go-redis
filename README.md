@@ -8,7 +8,6 @@
 [![GitHub Org's stars](https://img.shields.io/github/stars/dtapps)](https://github.com/dtapps)
 
 [comment]: <> (go)
-[![golang version](https://img.shields.io/badge/golang-%3E%3D1.6-8892BF.svg)](https://pkg.go.dev/github.com/dtapps/go-redis)
 [![godoc](https://pkg.go.dev/badge/github.com/dtapps/go-redis?status.svg)](https://pkg.go.dev/github.com/dtapps/go-redis)
 [![goproxy.cn](https://goproxy.cn/stats/github.com/dtapps/go-redis/badges/download-count.svg)](https://goproxy.cn/stats/github.com/dtapps/go-redis)
 [![goreportcard.com](https://goreportcard.com/badge/github.com/dtapps/go-redis)](https://goreportcard.com/report/github.com/dtapps/go-redis)
