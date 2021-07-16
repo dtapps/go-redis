@@ -9,12 +9,13 @@ import (
 )
 
 func TestName(t *testing.T) {
+	log.Printf("version：%v\n", dredis.Version())
 	// 连接
-	err := dredis.InitRedis("127.0.0.1", 6379, "", 2)
-	if err != nil {
-		panic(err)
-	}
-	jsonSimpleJson()
+	//err := dredis.InitRedis("127.0.0.1", 6379, "", 2)
+	//if err != nil {
+	//	panic(err)
+	//}
+	//jsonSimpleJson()
 }
 
 func set() {
