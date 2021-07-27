@@ -2,6 +2,8 @@ module github.com/dtapps/go-redis
 
 go 1.17
 
+retract v1.0.3
+
 retract v1.0.2
 
 retract v1.0.1
