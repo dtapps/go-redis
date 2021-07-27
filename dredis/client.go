@@ -13,7 +13,7 @@ var (
 )
 
 func Version() string {
-	return "1.0.2"
+	return "1.0.3"
 }
 
 // InitRedis 初始化连接 普通连接

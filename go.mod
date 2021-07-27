@@ -1,4 +1,4 @@
-module gitee.com/dtapps/go-redis
+module github.com/dtapps/go-redis
 
 go 1.17
 
