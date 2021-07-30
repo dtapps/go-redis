@@ -10,6 +10,6 @@
 
 ## 安装
 
-```go
+```text
 go get -u github.com/dtapps/go-redis
 ```
