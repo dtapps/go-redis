@@ -2,17 +2,9 @@ module github.com/dtapps/go-redis
 
 go 1.17
 
-retract v1.0.3
-
-retract v1.0.2
-
-retract v1.0.1
-
-retract v1.0.0
-
 require (
 	github.com/bitly/go-simplejson v0.5.0
-	github.com/go-redis/redis/v8 v8.11.0
+	github.com/go-redis/redis/v8 v8.11.1
 )
 
 require (
